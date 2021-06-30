@@ -1,0 +1,2631 @@
+py
+
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+from os.path  import basename
+
+headers = {'User-Agent': 
+           'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'}
+
+
+
+page = 'https://www.transfermarkt.it/serie-a/startseite/wettbewerb/IT1/plus/?saison_id=2018'
+tree = requests.get(page, headers = headers)
+soup = BeautifulSoup(tree.content, 'html.parser')
+
+teamLinks = []
+
+links = soup.select("a.vereinprofil_tooltip")
+
+for i in range(1,60,3):
+    teamLinks.append(links[i].get("href"))
+
+
+
+for i in range(len(teamLinks)):
+    teamLinks[i] = "https://www.transfermarkt.it"+teamLinks[i]
+
+
+players = []
+player_inj_history = []
+name = []
+
+for i in range(len(teamLinks)):
+    page = teamLinks[i]
+    tree = requests.get(page, headers = headers)
+    soup = BeautifulSoup(tree.content, 'html.parser')
+    links = soup.select("a.spielprofil_tooltip")
+    x = len(links)
+    for i in range(0,x,2):
+        players.append(links[i].get("href"))
+    for i in range(len(links)):
+        name.append(links[i].text)
+
+
+
+clean_name = []
+
+
+x = len(name)
+
+for i in range(0,x,2):
+    clean_name.append(name[i])
+
+
+
+for i in range (len(players)):
+    pl_st = players[i]
+    player_inj_history.append(pl_st.replace("profil", "verletzungen"))
+
+for i in range (len(player_inj_history)):
+    player_inj_history[i] = "https://www.transfermarkt.it"+player_inj_history[i]
+
+
+player_inj_history_2 = []
+player_inj_history_3 = []
+player_inj_history_4 = []
+player_inj_history_5 = []
+
+for i in range (len(player_inj_history)):
+    player_inj_history_2.append(player_inj_history[i]+"/page/2")
+
+for i in range (len(player_inj_history)):
+    player_inj_history_3.append(player_inj_history[i]+"/page/3")
+
+for i in range (len(player_inj_history)):
+    player_inj_history_4.append(player_inj_history[i]+"/page/4")
+
+for i in range (len(player_inj_history)):
+    player_inj_history_5.append(player_inj_history[i]+"/page/5")
+
+
+## ss = Season in which the injury is suffered
+## ed = Total lenght of the injury in days
+## md = Match Days skipped due to injury
+
+ss1 = []
+ss2 = []
+ss3 = []
+ss4 = []
+ss5 = []
+ss6 = []
+ss7 = []
+ss8 = []
+ss9 = []
+ss10 = []
+ss11 = []
+ss12 = []
+ss13 = []
+ss14 = []
+ss15 = []
+ss16 = []
+ss17 = []
+ss18 = []
+ss19 = []
+ss20 = []
+ss21 = []
+ss22 = []
+ss23 = []
+ss24 = []
+ss25 = []
+ss26 = []
+ss27 = []
+ss28 = []
+ss29 = []
+ss30 = []
+ss31 = []
+ss32 = []
+ss33 = []
+ss34 = []
+ss35 = []
+ss36 = []
+ss37 = []
+ss38 = []
+ss39 = []
+ss40 = []
+ss41 = []
+ss42 = []
+ss43 = []
+ss44 = []
+ss45 = []
+ss46 = []
+ss47 = []
+ss48 = []
+ss49 = []
+ss50 = []
+ss51 = []
+ss52 = []
+ss53 = []
+ss54 = []
+ss55 = []
+ss56 = []
+ss57 = []
+ss58 = []
+ss59 = []
+ss60 = []
+ss61 = []
+ss62 = []
+ss63 = []
+ss64 = []
+ss65 = []
+ss66 = []
+ss67 = []
+ss68 = []
+ss69 = []
+ss70 = []
+ss71 = []
+ss72 = []
+ss73 = []
+ss74 = []
+ss75 = []
+ed1 = []
+ed2 = []
+ed3 = []
+ed4 = []
+ed5 = []
+ed6 = []
+ed7 = []
+ed8 = []
+ed9 = []
+ed10 = []
+ed11 = []
+ed12 = []
+ed13 = []
+ed14 = []
+ed15 = []
+ed16 = []
+ed17 = []
+ed18 = []
+ed19 = []
+ed20 = []
+ed21 = []
+ed22 = []
+ed23 = []
+ed24 = []
+ed25 = []
+ed26 = []
+ed27 = []
+ed28 = []
+ed29 = []
+ed30 = []
+ed31 = []
+ed32 = []
+ed33 = []
+ed34 = []
+ed35 = []
+ed36 = []
+ed37 = []
+ed38 = []
+ed39 = []
+ed40 = []
+ed41 = []
+ed42 = []
+ed43 = []
+ed44 = []
+ed45 = []
+ed46 = []
+ed47 = []
+ed48 = []
+ed49 = []
+ed50 = []
+ed51 = []
+ed52 = []
+ed53 = []
+ed54 = []
+ed55 = []
+ed56 = []
+ed57 = []
+ed58 = []
+ed59 = []
+ed60 = []
+ed61 = []
+ed62 = []
+ed63 = []
+ed64 = []
+ed65 = []
+ed66 = []
+ed67 = []
+ed68 = []
+ed69 = []
+ed70 = []
+ed71 = []
+ed72 = []
+ed73 = []
+ed74 = []
+ed75 = []
+md1 = []
+md2 = []
+md3 = []
+md4 = []
+md5 = []
+md6 = []
+md7 = []
+md8 = []
+md9 = []
+md10 = []
+md11 = []
+md12 = []
+md13 = []
+md14 = []
+md15 = []
+md16 = []
+md17 = []
+md18 = []
+md19 = []
+md20 = []
+md21 = []
+md22 = []
+md23 = []
+md24 = []
+md25 = []
+md26 = []
+md27 = []
+md28 = []
+md29 = []
+md30 = []
+md31 = []
+md32 = []
+md33 = []
+md34 = []
+md35 = []
+md36 = []
+md37 = []
+md38 = []
+md39 = []
+md40 = []
+md41 = []
+md42 = []
+md43 = []
+md44 = []
+md45 = []
+md46 = []
+md47 = []
+md48 = []
+md49 = []
+md50 = []
+md51 = []
+md52 = []
+md53 = []
+md54 = []
+md55 = []
+md56 = []
+md57 = []
+md58 = []
+md59 = []
+md60 = []
+md61 = []
+md62 = []
+md63 = []
+md64 = []
+md65 = []
+md66 = []
+md67 = []
+md68 = []
+md69 = []
+md70 = []
+md71 = []
+md72 = []
+md73 = []
+md74 = []
+md75 = []
+
+
+for i in range (len(player_inj_history)):
+    page = player_inj_history[i]
+    tree = requests.get(page, headers = headers)
+    soup = BeautifulSoup(tree.content, 'html.parser')
+    links_pages = soup.find_all("li", {"class":"page"})
+    links_season_1 = soup.find_all("td", {"class":"zentriert"})
+    links_d_1 = soup.find_all("td", {"class":"rechts"})
+    if len(links_pages) == 2:
+        try:
+            ss1.append(links_season_1[0].text)
+            ed1.append(links_d_1[0].text)
+            md1.append(links_d_1[1].text)
+        except:
+            ss1.append("NA")
+            ed1.append("NA")
+            md1.append("NA")
+        try:
+            ss2.append(links_season_1[3].text)
+            ed2.append(links_d_1[2].text)
+            md2.append(links_d_1[3].text)
+        except:
+            ss2.append("NA")
+            ed2.append("NA")
+            md2.append("NA")
+        try:
+            ss3.append(links_season_1[6].text)
+            ed3.append(links_d_1[4].text)
+            md3.append(links_d_1[5].text)
+        except:
+            ss3.append("NA")
+            ed3.append("NA")
+            md3.append("NA")
+        try:
+            ss4.append(links_season_1[9].text)
+            ed4.append(links_d_1[6].text)
+            md4.append(links_d_1[7].text)
+        except:
+            ss4.append("NA")
+            ed4.append("NA")
+            md4.append("NA")
+        try:
+            ss5.append(links_season_1[12].text)
+            ed5.append(links_d_1[8].text)
+            md5.append(links_d_1[9].text)
+        except:
+            ss5.append("NA")
+            ed5.append("NA")
+            md5.append("NA")
+        try:
+            ss6.append(links_season_1[15].text)
+            ed6.append(links_d_1[10].text)
+            md6.append(links_d_1[11].text)
+        except:
+            ss6.append("NA")
+            ed6.append("NA")
+            md6.append("NA")
+        try:
+            ss7.append(links_season_1[18].text)
+            ed7.append(links_d_1[12].text)
+            md7.append(links_d_1[13].text)
+        except:
+            ss7.append("NA")
+            ed7.append("NA")
+            md7.append("NA")
+        try:
+            ss8.append(links_season_1[21].text)
+            ed8.append(links_d_1[14].text)
+            md8.append(links_d_1[15].text)
+        except:
+            ss8.append("NA")
+            ed8.append("NA")
+            md8.append("NA")
+        try:
+            ss9.append(links_season_1[24].text)
+            ed9.append(links_d_1[16].text)
+            md9.append(links_d_1[17].text)
+        except:
+            ss9.append("NA")
+            ed9.append("NA")
+            md9.append("NA")
+        try:
+            ss10.append(links_season_1[27].text)
+            ed10.append(links_d_1[18].text)
+            md10.append(links_d_1[19].text)
+        except:
+            ss10.append("NA")
+            ed10.append("NA")
+            md10.append("NA")
+        try:
+            ss11.append(links_season_1[30].text)
+            ed11.append(links_d_1[20].text)
+            md11.append(links_d_1[21].text)
+        except:
+            ss11.append("NA")
+            ed11.append("NA")
+            md11.append("NA")
+        try:
+            ss12.append(links_season_1[33].text)
+            ed12.append(links_d_1[22].text)
+            md12.append(links_d_1[23].text)
+        except:
+            ss12.append("NA")
+            ed12.append("NA")
+            md12.append("NA")
+        try:
+            ss13.append(links_season_1[36].text)
+            ed13.append(links_d_1[24].text)
+            md13.append(links_d_1[25].text)
+        except:
+            ss13.append("NA")
+            ed13.append("NA")
+            md13.append("NA")
+        try:
+            ss14.append(links_season_1[39].text)
+            ed14.append(links_d_1[26].text)
+            md14.append(links_d_1[27].text)
+        except:
+            ss14.append("NA")
+            ed14.append("NA")
+            md14.append("NA")
+        try:
+            ss15.append(links_season_1[42].text)
+            ed15.append(links_d_1[28].text)
+            md15.append(links_d_1[29].text)
+        except:
+            ss15.append("NA")
+            ed15.append("NA")
+            md15.append("NA")
+        page = player_inj_history_2[i]
+        tree = requests.get(page, headers = headers)
+        soup = BeautifulSoup(tree.content, 'html.parser')
+        links_season_2 = soup.find_all("td", {"class":"zentriert"})
+        links_d_2 = soup.find_all("td", {"class":"rechts"})
+        try:
+            ss16.append(links_season_2[0].text)
+            ed16.append(links_d_2[0].text)
+            md16.append(links_d_2[1].text)
+        except:
+            ss16.append("NA")
+            ed16.append("NA")
+            md16.append("NA")
+        try:
+            ss17.append(links_season_2[3].text)
+            ed17.append(links_d_2[2].text)
+            md17.append(links_d_2[3].text)
+        except:
+            ss17.append("NA")
+            ed17.append("NA")
+            md17.append("NA")
+        try:
+            ss18.append(links_season_2[6].text)
+            ed18.append(links_d_2[4].text)
+            md18.append(links_d_2[5].text)
+        except:
+            ss18.append("NA")
+            ed18.append("NA")
+            md18.append("NA")
+        try:
+            ss19.append(links_season_2[9].text)
+            ed19.append(links_d_2[6].text)
+            md19.append(links_d_2[7].text)
+        except:
+            ss19.append("NA")
+            ed19.append("NA")
+            md19.append("NA")
+        try:
+            ss20.append(links_season_2[12].text)
+            ed20.append(links_d_2[8].text)
+            md20.append(links_d_2[9].text)
+        except:
+            ss20.append("NA")
+            ed20.append("NA")
+            md20.append("NA")
+        try:
+            ss21.append(links_season_2[15].text)
+            ed21.append(links_d_2[10].text)
+            md21.append(links_d_2[11].text)
+        except:
+            ss21.append("NA")
+            ed21.append("NA")
+            md21.append("NA")
+        try:
+            ss22.append(links_season_2[18].text)
+            ed22.append(links_d_2[12].text)
+            md22.append(links_d_2[13].text)
+        except:
+            ss22.append("NA")
+            ed22.append("NA")
+            md22.append("NA")
+        try:
+            ss23.append(links_season_2[21].text)
+            ed23.append(links_d_2[14].text)
+            md23.append(links_d_2[15].text)
+        except:
+            ss23.append("NA")
+            ed23.append("NA")
+            md23.append("NA")
+        try:
+            ss24.append(links_season_2[24].text)
+            ed24.append(links_d_2[16].text)
+            md24.append(links_d_2[17].text)
+        except:
+            ss24.append("NA")
+            ed24.append("NA")
+            md24.append("NA")
+        try:
+            ss25.append(links_season_2[27].text)
+            ed25.append(links_d_2[18].text)
+            md25.append(links_d_2[19].text)
+        except:
+            ss25.append("NA")
+            ed25.append("NA")
+            md25.append("NA")
+        try:
+            ss26.append(links_season_2[30].text)
+            ed26.append(links_d_2[20].text)
+            md26.append(links_d_2[21].text)
+        except:
+            ss26.append("NA")
+            ed26.append("NA")
+            md26.append("NA")
+        try:
+            ss27.append(links_season_2[33].text)
+            ed27.append(links_d_2[22].text)
+            md27.append(links_d_2[23].text)
+        except:
+            ss27.append("NA")
+            ed27.append("NA")
+            md27.append("NA")
+        try:
+            ss28.append(links_season_2[36].text)
+            ed28.append(links_d_2[24].text)
+            md28.append(links_d_2[25].text)
+        except:
+            ss28.append("NA")
+            ed28.append("NA")
+            md28.append("NA")
+        try:
+            ss29.append(links_season_2[39].text)
+            ed29.append(links_d_2[26].text)
+            md29.append(links_d_2[27].text)
+        except:
+            ss29.append("NA")
+            ed29.append("NA")
+            md29.append("NA")
+        try:
+            ss30.append(links_season_2[42].text)
+            ed30.append(links_d_2[28].text)
+            md30.append(links_d_2[29].text)
+        except:
+            ss30.append("NA")
+            ed30.append("NA")
+            md30.append("NA")
+        ss31.append("NA")
+        ss32.append("NA")
+        ss33.append("NA")
+        ss34.append("NA")
+        ss35.append("NA")
+        ss36.append("NA")
+        ss37.append("NA")
+        ss38.append("NA")
+        ss39.append("NA")
+        ss40.append("NA")
+        ss41.append("NA")
+        ss42.append("NA")
+        ss43.append("NA")
+        ss44.append("NA")
+        ss45.append("NA")
+        ss46.append("NA")
+        ss47.append("NA")
+        ss48.append("NA")
+        ss49.append("NA")
+        ss50.append("NA")
+        ss51.append("NA")
+        ss52.append("NA")
+        ss53.append("NA")
+        ss54.append("NA")
+        ss55.append("NA")
+        ss56.append("NA")
+        ss57.append("NA")
+        ss58.append("NA")
+        ss59.append("NA")
+        ss60.append("NA")
+        ss61.append("NA")
+        ss62.append("NA")
+        ss63.append("NA")
+        ss64.append("NA")
+        ss65.append("NA")
+        ss66.append("NA")
+        ss67.append("NA")
+        ss68.append("NA")
+        ss69.append("NA")
+        ss70.append("NA")
+        ss71.append("NA")
+        ss72.append("NA")
+        ss73.append("NA")
+        ss74.append("NA")
+        ss75.append("NA")
+        ed31.append("NA")
+        ed32.append("NA")
+        ed33.append("NA")
+        ed34.append("NA")
+        ed35.append("NA")
+        ed36.append("NA")
+        ed37.append("NA")
+        ed38.append("NA")
+        ed39.append("NA")
+        ed40.append("NA")
+        ed41.append("NA")
+        ed42.append("NA")
+        ed43.append("NA")
+        ed44.append("NA")
+        ed45.append("NA")
+        ed46.append("NA")
+        ed47.append("NA")
+        ed48.append("NA")
+        ed49.append("NA")
+        ed50.append("NA")
+        ed51.append("NA")
+        ed52.append("NA")
+        ed53.append("NA")
+        ed54.append("NA")
+        ed55.append("NA")
+        ed56.append("NA")
+        ed57.append("NA")
+        ed58.append("NA")
+        ed59.append("NA")
+        ed60.append("NA")
+        ed61.append("NA")
+        ed62.append("NA")
+        ed63.append("NA")
+        ed64.append("NA")
+        ed65.append("NA")
+        ed66.append("NA")
+        ed67.append("NA")
+        ed68.append("NA")
+        ed69.append("NA")
+        ed70.append("NA")
+        ed71.append("NA")
+        ed72.append("NA")
+        ed73.append("NA")
+        ed74.append("NA")
+        ed75.append("NA")
+        md31.append("NA")
+        md32.append("NA")
+        md33.append("NA")
+        md34.append("NA")
+        md35.append("NA")
+        md36.append("NA")
+        md37.append("NA")
+        md38.append("NA")
+        md39.append("NA")
+        md40.append("NA")
+        md41.append("NA")
+        md42.append("NA")
+        md43.append("NA")
+        md44.append("NA")
+        md45.append("NA")
+        md46.append("NA")
+        md47.append("NA")
+        md48.append("NA")
+        md49.append("NA")
+        md50.append("NA")
+        md51.append("NA")
+        md52.append("NA")
+        md53.append("NA")
+        md54.append("NA")
+        md55.append("NA")
+        md56.append("NA")
+        md57.append("NA")
+        md58.append("NA")
+        md59.append("NA")
+        md60.append("NA")
+        md61.append("NA")
+        md62.append("NA")
+        md63.append("NA")
+        md64.append("NA")
+        md65.append("NA")
+        md66.append("NA")
+        md67.append("NA")
+        md68.append("NA")
+        md69.append("NA")
+        md70.append("NA")
+        md71.append("NA")
+        md72.append("NA")
+        md73.append("NA")
+        md74.append("NA")
+        md75.append("NA")
+    elif len(links_pages) == 3:
+        try:
+            ss1.append(links_season_1[0].text)
+            ed1.append(links_d_1[0].text)
+            md1.append(links_d_1[1].text)
+        except:
+            ss1.append("NA")
+            ed1.append("NA")
+            md1.append("NA")
+        try:
+            ss2.append(links_season_1[3].text)
+            ed2.append(links_d_1[2].text)
+            md2.append(links_d_1[3].text)
+        except:
+            ss2.append("NA")
+            ed2.append("NA")
+            md2.append("NA")
+        try:
+            ss3.append(links_season_1[6].text)
+            ed3.append(links_d_1[4].text)
+            md3.append(links_d_1[5].text)
+        except:
+            ss3.append("NA")
+            ed3.append("NA")
+            md3.append("NA")
+        try:
+            ss4.append(links_season_1[9].text)
+            ed4.append(links_d_1[6].text)
+            md4.append(links_d_1[7].text)
+        except:
+            ss4.append("NA")
+            ed4.append("NA")
+            md4.append("NA")
+        try:
+            ss5.append(links_season_1[12].text)
+            ed5.append(links_d_1[8].text)
+            md5.append(links_d_1[9].text)
+        except:
+            ss5.append("NA")
+            ed5.append("NA")
+            md5.append("NA")
+        try:
+            ss6.append(links_season_1[15].text)
+            ed6.append(links_d_1[10].text)
+            md6.append(links_d_1[11].text)
+        except:
+            ss6.append("NA")
+            ed6.append("NA")
+            md6.append("NA")
+        try:
+            ss7.append(links_season_1[18].text)
+            ed7.append(links_d_1[12].text)
+            md7.append(links_d_1[13].text)
+        except:
+            ss7.append("NA")
+            ed7.append("NA")
+            md7.append("NA")
+        try:
+            ss8.append(links_season_1[21].text)
+            ed8.append(links_d_1[14].text)
+            md8.append(links_d_1[15].text)
+        except:
+            ss8.append("NA")
+            ed8.append("NA")
+            md8.append("NA")
+        try:
+            ss9.append(links_season_1[24].text)
+            ed9.append(links_d_1[16].text)
+            md9.append(links_d_1[17].text)
+        except:
+            ss9.append("NA")
+            ed9.append("NA")
+            md9.append("NA")
+        try:
+            ss10.append(links_season_1[27].text)
+            ed10.append(links_d_1[18].text)
+            md10.append(links_d_1[19].text)
+        except:
+            ss10.append("NA")
+            ed10.append("NA")
+            md10.append("NA")
+        try:
+            ss11.append(links_season_1[30].text)
+            ed11.append(links_d_1[20].text)
+            md11.append(links_d_1[21].text)
+        except:
+            ss11.append("NA")
+            ed11.append("NA")
+            md11.append("NA")
+        try:
+            ss12.append(links_season_1[33].text)
+            ed12.append(links_d_1[22].text)
+            md12.append(links_d_1[23].text)
+        except:
+            ss12.append("NA")
+            ed12.append("NA")
+            md12.append("NA")
+        try:
+            ss13.append(links_season_1[36].text)
+            ed13.append(links_d_1[24].text)
+            md13.append(links_d_1[25].text)
+        except:
+            ss13.append("NA")
+            ed13.append("NA")
+            md13.append("NA")
+        try:
+            ss14.append(links_season_1[39].text)
+            ed14.append(links_d_1[26].text)
+            md14.append(links_d_1[27].text)
+        except:
+            ss14.append("NA")
+            ed14.append("NA")
+            md14.append("NA")
+        try:
+            ss15.append(links_season_1[42].text)
+            ed15.append(links_d_1[28].text)
+            md15.append(links_d_1[29].text)
+        except:
+            ss15.append("NA")
+            ed15.append("NA")
+            md15.append("NA")
+        page = player_inj_history_2[i]
+        tree = requests.get(page, headers = headers)
+        soup = BeautifulSoup(tree.content, 'html.parser')
+        links_season_2 = soup.find_all("td", {"class":"zentriert"})
+        links_d_2 = soup.find_all("td", {"class":"rechts"})
+        try:
+            ss16.append(links_season_2[0].text)
+            ed16.append(links_d_2[0].text)
+            md16.append(links_d_2[1].text)
+        except:
+            ss16.append("NA")
+            ed16.append("NA")
+            md16.append("NA")
+        try:
+            ss17.append(links_season_2[3].text)
+            ed17.append(links_d_2[2].text)
+            md17.append(links_d_2[3].text)
+        except:
+            ss17.append("NA")
+            ed17.append("NA")
+            md17.append("NA")
+        try:
+            ss18.append(links_season_2[6].text)
+            ed18.append(links_d_2[4].text)
+            md18.append(links_d_2[5].text)
+        except:
+            ss18.append("NA")
+            ed18.append("NA")
+            md18.append("NA")
+        try:
+            ss19.append(links_season_2[9].text)
+            ed19.append(links_d_2[6].text)
+            md19.append(links_d_2[7].text)
+        except:
+            ss19.append("NA")
+            ed19.append("NA")
+            md19.append("NA")
+        try:
+            ss20.append(links_season_2[12].text)
+            ed20.append(links_d_2[8].text)
+            md20.append(links_d_2[9].text)
+        except:
+            ss20.append("NA")
+            ed20.append("NA")
+            md20.append("NA")
+        try:
+            ss21.append(links_season_2[15].text)
+            ed21.append(links_d_2[10].text)
+            md21.append(links_d_2[11].text)
+        except:
+            ss21.append("NA")
+            ed21.append("NA")
+            md21.append("NA")
+        try:
+            ss22.append(links_season_2[18].text)
+            ed22.append(links_d_2[12].text)
+            md22.append(links_d_2[13].text)
+        except:
+            ss22.append("NA")
+            ed22.append("NA")
+            md22.append("NA")
+        try:
+            ss23.append(links_season_2[21].text)
+            ed23.append(links_d_2[14].text)
+            md23.append(links_d_2[15].text)
+        except:
+            ss23.append("NA")
+            ed23.append("NA")
+            md23.append("NA")
+        try:
+            ss24.append(links_season_2[24].text)
+            ed24.append(links_d_2[16].text)
+            md24.append(links_d_2[17].text)
+        except:
+            ss24.append("NA")
+            ed24.append("NA")
+            md24.append("NA")
+        try:
+            ss25.append(links_season_2[27].text)
+            ed25.append(links_d_2[18].text)
+            md25.append(links_d_2[19].text)
+        except:
+            ss25.append("NA")
+            ed25.append("NA")
+            md25.append("NA")
+        try:
+            ss26.append(links_season_2[30].text)
+            ed26.append(links_d_2[20].text)
+            md26.append(links_d_2[21].text)
+        except:
+            ss26.append("NA")
+            ed26.append("NA")
+            md26.append("NA")
+        try:
+            ss27.append(links_season_2[33].text)
+            ed27.append(links_d_2[22].text)
+            md27.append(links_d_2[23].text)
+        except:
+            ss27.append("NA")
+            ed27.append("NA")
+            md27.append("NA")
+        try:
+            ss28.append(links_season_2[36].text)
+            ed28.append(links_d_2[24].text)
+            md28.append(links_d_2[25].text)
+        except:
+            ss28.append("NA")
+            ed28.append("NA")
+            md28.append("NA")
+        try:
+            ss29.append(links_season_2[39].text)
+            ed29.append(links_d_2[26].text)
+            md29.append(links_d_2[27].text)
+        except:
+            ss29.append("NA")
+            ed29.append("NA")
+            md29.append("NA")
+        try:
+            ss30.append(links_season_2[42].text)
+            ed30.append(links_d_2[28].text)
+            md30.append(links_d_2[29].text)
+        except:
+            ss30.append("NA")
+            ed30.append("NA")
+            md30.append("NA")
+        page = player_inj_history_3[i]
+        tree = requests.get(page, headers = headers)
+        soup = BeautifulSoup(tree.content, 'html.parser')
+        links_season_3 = soup.find_all("td", {"class":"zentriert"})
+        links_d_3 = soup.find_all("td", {"class":"rechts"})
+        try:
+            ss31.append(links_season_3[0].text)
+            ed31.append(links_d_3[0].text)
+            md31.append(links_d_3[1].text)
+        except:
+            ss31.append("NA")
+            ed31.append("NA")
+            md31.append("NA")
+        try:
+            ss32.append(links_season_3[3].text)
+            ed32.append(links_d_3[2].text)
+            md32.append(links_d_3[3].text)
+        except:
+            ss32.append("NA")
+            ed32.append("NA")
+            md32.append("NA")
+        try:
+            ss33.append(links_season_3[6].text)
+            ed33.append(links_d_3[4].text)
+            md33.append(links_d_3[5].text)
+        except:
+            ss33.append("NA")
+            ed33.append("NA")
+            md33.append("NA")
+        try:
+            ss34.append(links_season_3[9].text)
+            ed34.append(links_d_3[6].text)
+            md34.append(links_d_3[7].text)
+        except:
+            ss34.append("NA")
+            ed34.append("NA")
+            md34.append("NA")
+        try:
+            ss35.append(links_season_3[12].text)
+            ed35.append(links_d_3[8].text)
+            md35.append(links_d_3[9].text)
+        except:
+            ss35.append("NA")
+            ed35.append("NA")
+            md35.append("NA")
+        try:
+            ss36.append(links_season_3[15].text)
+            ed36.append(links_d_3[10].text)
+            md36.append(links_d_3[11].text)
+        except:
+            ss36.append("NA")
+            ed36.append("NA")
+            md36.append("NA")
+        try:
+            ss37.append(links_season_3[18].text)
+            ed37.append(links_d_3[12].text)
+            md37.append(links_d_3[13].text)
+        except:
+            ss37.append("NA")
+            ed37.append("NA")
+            md37.append("NA")
+        try:
+            ss38.append(links_season_3[21].text)
+            ed38.append(links_d_3[14].text)
+            md38.append(links_d_3[15].text)
+        except:
+            ss38.append("NA")
+            ed38.append("NA")
+            md38.append("NA")
+        try:
+            ss39.append(links_season_3[24].text)
+            ed39.append(links_d_3[16].text)
+            md39.append(links_d_3[17].text)
+        except:
+            ss39.append("NA")
+            ed39.append("NA")
+            md39.append("NA")
+        try:
+            ss40.append(links_season_3[27].text)
+            ed40.append(links_d_3[18].text)
+            md40.append(links_d_3[19].text)
+        except:
+            ss40.append("NA")
+            ed40.append("NA")
+            md40.append("NA")
+        try:
+            ss41.append(links_season_3[30].text)
+            ed41.append(links_d_3[20].text)
+            md41.append(links_d_3[21].text)
+        except:
+            ss41.append("NA")
+            ed41.append("NA")
+            md41.append("NA")
+        try:
+            ss42.append(links_season_3[33].text)
+            ed42.append(links_d_3[22].text)
+            md42.append(links_d_3[23].text)
+        except:
+            ss42.append("NA")
+            ed42.append("NA")
+            md42.append("NA")
+        try:
+            ss43.append(links_season_3[36].text)
+            ed43.append(links_d_3[24].text)
+            md43.append(links_d_3[25].text)
+        except:
+            ss43.append("NA")
+            ed43.append("NA")
+            md43.append("NA")
+        try:
+            ss44.append(links_season_3[39].text)
+            ed44.append(links_d_3[26].text)
+            md44.append(links_d_3[27].text)
+        except:
+            ss44.append("NA")
+            ed44.append("NA")
+            md44.append("NA")
+        try:
+            ss45.append(links_season_3[42].text)
+            ed45.append(links_d_3[28].text)
+            md45.append(links_d_3[29].text)
+        except:
+            ss45.append("NA")
+            ed45.append("NA")
+            md45.append("NA")
+        ss46.append("NA")
+        ss47.append("NA")
+        ss48.append("NA")
+        ss49.append("NA")
+        ss50.append("NA")
+        ss51.append("NA")
+        ss52.append("NA")
+        ss53.append("NA")
+        ss54.append("NA")
+        ss55.append("NA")
+        ss56.append("NA")
+        ss57.append("NA")
+        ss58.append("NA")
+        ss59.append("NA")
+        ss60.append("NA")
+        ss61.append("NA")
+        ss62.append("NA")
+        ss63.append("NA")
+        ss64.append("NA")
+        ss65.append("NA")
+        ss66.append("NA")
+        ss67.append("NA")
+        ss68.append("NA")
+        ss69.append("NA")
+        ss70.append("NA")
+        ss71.append("NA")
+        ss72.append("NA")
+        ss73.append("NA")
+        ss74.append("NA")
+        ss75.append("NA")
+        ed46.append("NA")
+        ed47.append("NA")
+        ed48.append("NA")
+        ed49.append("NA")
+        ed50.append("NA")
+        ed51.append("NA")
+        ed52.append("NA")
+        ed53.append("NA")
+        ed54.append("NA")
+        ed55.append("NA")
+        ed56.append("NA")
+        ed57.append("NA")
+        ed58.append("NA")
+        ed59.append("NA")
+        ed60.append("NA")
+        ed61.append("NA")
+        ed62.append("NA")
+        ed63.append("NA")
+        ed64.append("NA")
+        ed65.append("NA")
+        ed66.append("NA")
+        ed67.append("NA")
+        ed68.append("NA")
+        ed69.append("NA")
+        ed70.append("NA")
+        ed71.append("NA")
+        ed72.append("NA")
+        ed73.append("NA")
+        ed74.append("NA")
+        ed75.append("NA")
+        md46.append("NA")
+        md47.append("NA")
+        md48.append("NA")
+        md49.append("NA")
+        md50.append("NA")
+        md51.append("NA")
+        md52.append("NA")
+        md53.append("NA")
+        md54.append("NA")
+        md55.append("NA")
+        md56.append("NA")
+        md57.append("NA")
+        md58.append("NA")
+        md59.append("NA")
+        md60.append("NA")
+        md61.append("NA")
+        md62.append("NA")
+        md63.append("NA")
+        md64.append("NA")
+        md65.append("NA")
+        md66.append("NA")
+        md67.append("NA")
+        md68.append("NA")
+        md69.append("NA")
+        md70.append("NA")
+        md71.append("NA")
+        md72.append("NA")
+        md73.append("NA")
+        md74.append("NA")
+        md75.append("NA")
+    elif len(links_pages) == 4:
+        try:
+            ss1.append(links_season_1[0].text)
+            ed1.append(links_d_1[0].text)
+            md1.append(links_d_1[1].text)
+        except:
+            ss1.append("NA")
+            ed1.append("NA")
+            md1.append("NA")
+        try:
+            ss2.append(links_season_1[3].text)
+            ed2.append(links_d_1[2].text)
+            md2.append(links_d_1[3].text)
+        except:
+            ss2.append("NA")
+            ed2.append("NA")
+            md2.append("NA")
+        try:
+            ss3.append(links_season_1[6].text)
+            ed3.append(links_d_1[4].text)
+            md3.append(links_d_1[5].text)
+        except:
+            ss3.append("NA")
+            ed3.append("NA")
+            md3.append("NA")
+        try:
+            ss4.append(links_season_1[9].text)
+            ed4.append(links_d_1[6].text)
+            md4.append(links_d_1[7].text)
+        except:
+            ss4.append("NA")
+            ed4.append("NA")
+            md4.append("NA")
+        try:
+            ss5.append(links_season_1[12].text)
+            ed5.append(links_d_1[8].text)
+            md5.append(links_d_1[9].text)
+        except:
+            ss5.append("NA")
+            ed5.append("NA")
+            md5.append("NA")
+        try:
+            ss6.append(links_season_1[15].text)
+            ed6.append(links_d_1[10].text)
+            md6.append(links_d_1[11].text)
+        except:
+            ss6.append("NA")
+            ed6.append("NA")
+            md6.append("NA")
+        try:
+            ss7.append(links_season_1[18].text)
+            ed7.append(links_d_1[12].text)
+            md7.append(links_d_1[13].text)
+        except:
+            ss7.append("NA")
+            ed7.append("NA")
+            md7.append("NA")
+        try:
+            ss8.append(links_season_1[21].text)
+            ed8.append(links_d_1[14].text)
+            md8.append(links_d_1[15].text)
+        except:
+            ss8.append("NA")
+            ed8.append("NA")
+            md8.append("NA")
+        try:
+            ss9.append(links_season_1[24].text)
+            ed9.append(links_d_1[16].text)
+            md9.append(links_d_1[17].text)
+        except:
+            ss9.append("NA")
+            ed9.append("NA")
+            md9.append("NA")
+        try:
+            ss10.append(links_season_1[27].text)
+            ed10.append(links_d_1[18].text)
+            md10.append(links_d_1[19].text)
+        except:
+            ss10.append("NA")
+            ed10.append("NA")
+            md10.append("NA")
+        try:
+            ss11.append(links_season_1[30].text)
+            ed11.append(links_d_1[20].text)
+            md11.append(links_d_1[21].text)
+        except:
+            ss11.append("NA")
+            ed11.append("NA")
+            md11.append("NA")
+        try:
+            ss12.append(links_season_1[33].text)
+            ed12.append(links_d_1[22].text)
+            md12.append(links_d_1[23].text)
+        except:
+            ss12.append("NA")
+            ed12.append("NA")
+            md12.append("NA")
+        try:
+            ss13.append(links_season_1[36].text)
+            ed13.append(links_d_1[24].text)
+            md13.append(links_d_1[25].text)
+        except:
+            ss13.append("NA")
+            ed13.append("NA")
+            md13.append("NA")
+        try:
+            ss14.append(links_season_1[39].text)
+            ed14.append(links_d_1[26].text)
+            md14.append(links_d_1[27].text)
+        except:
+            ss14.append("NA")
+            ed14.append("NA")
+            md14.append("NA")
+        try:
+            ss15.append(links_season_1[42].text)
+            ed15.append(links_d_1[28].text)
+            md15.append(links_d_1[29].text)
+        except:
+            ss15.append("NA")
+            ed15.append("NA")
+            md15.append("NA")
+        page = player_inj_history_2[i]
+        tree = requests.get(page, headers = headers)
+        soup = BeautifulSoup(tree.content, 'html.parser')
+        links_season_2 = soup.find_all("td", {"class":"zentriert"})
+        links_d_2 = soup.find_all("td", {"class":"rechts"})
+        try:
+            ss16.append(links_season_2[0].text)
+            ed16.append(links_d_2[0].text)
+            md16.append(links_d_2[1].text)
+        except:
+            ss16.append("NA")
+            ed16.append("NA")
+            md16.append("NA")
+        try:
+            ss17.append(links_season_2[3].text)
+            ed17.append(links_d_2[2].text)
+            md17.append(links_d_2[3].text)
+        except:
+            ss17.append("NA")
+            ed17.append("NA")
+            md17.append("NA")
+        try:
+            ss18.append(links_season_2[6].text)
+            ed18.append(links_d_2[4].text)
+            md18.append(links_d_2[5].text)
+        except:
+            ss18.append("NA")
+            ed18.append("NA")
+            md18.append("NA")
+        try:
+            ss19.append(links_season_2[9].text)
+            ed19.append(links_d_2[6].text)
+            md19.append(links_d_2[7].text)
+        except:
+            ss19.append("NA")
+            ed19.append("NA")
+            md19.append("NA")
+        try:
+            ss20.append(links_season_2[12].text)
+            ed20.append(links_d_2[8].text)
+            md20.append(links_d_2[9].text)
+        except:
+            ss20.append("NA")
+            ed20.append("NA")
+            md20.append("NA")
+        try:
+            ss21.append(links_season_2[15].text)
+            ed21.append(links_d_2[10].text)
+            md21.append(links_d_2[11].text)
+        except:
+            ss21.append("NA")
+            ed21.append("NA")
+            md21.append("NA")
+        try:
+            ss22.append(links_season_2[18].text)
+            ed22.append(links_d_2[12].text)
+            md22.append(links_d_2[13].text)
+        except:
+            ss22.append("NA")
+            ed22.append("NA")
+            md22.append("NA")
+        try:
+            ss23.append(links_season_2[21].text)
+            ed23.append(links_d_2[14].text)
+            md23.append(links_d_2[15].text)
+        except:
+            ss23.append("NA")
+            ed23.append("NA")
+            md23.append("NA")
+        try:
+            ss24.append(links_season_2[24].text)
+            ed24.append(links_d_2[16].text)
+            md24.append(links_d_2[17].text)
+        except:
+            ss24.append("NA")
+            ed24.append("NA")
+            md24.append("NA")
+        try:
+            ss25.append(links_season_2[27].text)
+            ed25.append(links_d_2[18].text)
+            md25.append(links_d_2[19].text)
+        except:
+            ss25.append("NA")
+            ed25.append("NA")
+            md25.append("NA")
+        try:
+            ss26.append(links_season_2[30].text)
+            ed26.append(links_d_2[20].text)
+            md26.append(links_d_2[21].text)
+        except:
+            ss26.append("NA")
+            ed26.append("NA")
+            md26.append("NA")
+        try:
+            ss27.append(links_season_2[33].text)
+            ed27.append(links_d_2[22].text)
+            md27.append(links_d_2[23].text)
+        except:
+            ss27.append("NA")
+            ed27.append("NA")
+            md27.append("NA")
+        try:
+            ss28.append(links_season_2[36].text)
+            ed28.append(links_d_2[24].text)
+            md28.append(links_d_2[25].text)
+        except:
+            ss28.append("NA")
+            ed28.append("NA")
+            md28.append("NA")
+        try:
+            ss29.append(links_season_2[39].text)
+            ed29.append(links_d_2[26].text)
+            md29.append(links_d_2[27].text)
+        except:
+            ss29.append("NA")
+            ed29.append("NA")
+            md29.append("NA")
+        try:
+            ss30.append(links_season_2[42].text)
+            ed30.append(links_d_2[28].text)
+            md30.append(links_d_2[29].text)
+        except:
+            ss30.append("NA")
+            ed30.append("NA")
+            md30.append("NA")
+        page = player_inj_history_3[i]
+        tree = requests.get(page, headers = headers)
+        soup = BeautifulSoup(tree.content, 'html.parser')
+        links_season_3 = soup.find_all("td", {"class":"zentriert"})
+        links_d_3 = soup.find_all("td", {"class":"rechts"})
+        try:
+            ss31.append(links_season_3[0].text)
+            ed31.append(links_d_3[0].text)
+            md31.append(links_d_3[1].text)
+        except:
+            ss31.append("NA")
+            ed31.append("NA")
+            md31.append("NA")
+        try:
+            ss32.append(links_season_3[3].text)
+            ed32.append(links_d_3[2].text)
+            md32.append(links_d_3[3].text)
+        except:
+            ss32.append("NA")
+            ed32.append("NA")
+            md32.append("NA")
+        try:
+            ss33.append(links_season_3[6].text)
+            ed33.append(links_d_3[4].text)
+            md33.append(links_d_3[5].text)
+        except:
+            ss33.append("NA")
+            ed33.append("NA")
+            md33.append("NA")
+        try:
+            ss34.append(links_season_3[9].text)
+            ed34.append(links_d_3[6].text)
+            md34.append(links_d_3[7].text)
+        except:
+            ss34.append("NA")
+            ed34.append("NA")
+            md34.append("NA")
+        try:
+            ss35.append(links_season_3[12].text)
+            ed35.append(links_d_3[8].text)
+            md35.append(links_d_3[9].text)
+        except:
+            ss35.append("NA")
+            ed35.append("NA")
+            md35.append("NA")
+        try:
+            ss36.append(links_season_3[15].text)
+            ed36.append(links_d_3[10].text)
+            md36.append(links_d_3[11].text)
+        except:
+            ss36.append("NA")
+            ed36.append("NA")
+            md36.append("NA")
+        try:
+            ss37.append(links_season_3[18].text)
+            ed37.append(links_d_3[12].text)
+            md37.append(links_d_3[13].text)
+        except:
+            ss37.append("NA")
+            ed37.append("NA")
+            md37.append("NA")
+        try:
+            ss38.append(links_season_3[21].text)
+            ed38.append(links_d_3[14].text)
+            md38.append(links_d_3[15].text)
+        except:
+            ss38.append("NA")
+            ed38.append("NA")
+            md38.append("NA")
+        try:
+            ss39.append(links_season_3[24].text)
+            ed39.append(links_d_3[16].text)
+            md39.append(links_d_3[17].text)
+        except:
+            ss39.append("NA")
+            ed39.append("NA")
+            md39.append("NA")
+        try:
+            ss40.append(links_season_3[27].text)
+            ed40.append(links_d_3[18].text)
+            md40.append(links_d_3[19].text)
+        except:
+            ss40.append("NA")
+            ed40.append("NA")
+            md40.append("NA")
+        try:
+            ss41.append(links_season_3[30].text)
+            ed41.append(links_d_3[20].text)
+            md41.append(links_d_3[21].text)
+        except:
+            ss41.append("NA")
+            ed41.append("NA")
+            md41.append("NA")
+        try:
+            ss42.append(links_season_3[33].text)
+            ed42.append(links_d_3[22].text)
+            md42.append(links_d_3[23].text)
+        except:
+            ss42.append("NA")
+            ed42.append("NA")
+            md42.append("NA")
+        try:
+            ss43.append(links_season_3[36].text)
+            ed43.append(links_d_3[24].text)
+            md43.append(links_d_3[25].text)
+        except:
+            ss43.append("NA")
+            ed43.append("NA")
+            md43.append("NA")
+        try:
+            ss44.append(links_season_3[39].text)
+            ed44.append(links_d_3[26].text)
+            md44.append(links_d_3[27].text)
+        except:
+            ss44.append("NA")
+            ed44.append("NA")
+            md44.append("NA")
+        try:
+            ss45.append(links_season_3[42].text)
+            ed45.append(links_d_3[28].text)
+            md45.append(links_d_3[29].text)
+        except:
+            ss45.append("NA")
+            ed45.append("NA")
+            md45.append("NA")
+        page = player_inj_history_4[i]
+        tree = requests.get(page, headers = headers)
+        soup = BeautifulSoup(tree.content, 'html.parser')
+        links_season_4 = soup.find_all("td", {"class":"zentriert"})
+        links_d_4 = soup.find_all("td", {"class":"rechts"})
+        try:
+            ss46.append(links_season_4[0].text)
+            ed46.append(links_d_4[0].text)
+            md46.append(links_d_4[1].text)
+        except:
+            ss46.append("NA")
+            ed46.append("NA")
+            md46.append("NA")
+        try:
+            ss47.append(links_season_4[3].text)
+            ed47.append(links_d_4[2].text)
+            md47.append(links_d_4[3].text)
+        except:
+            ss47.append("NA")
+            ed47.append("NA")
+            md47.append("NA")
+        try:
+            ss48.append(links_season_4[6].text)
+            ed48.append(links_d_4[4].text)
+            md48.append(links_d_4[5].text)
+        except:
+            ss48.append("NA")
+            ed48.append("NA")
+            md48.append("NA")
+        try:
+            ss49.append(links_season_4[9].text)
+            ed49.append(links_d_4[6].text)
+            md49.append(links_d_4[7].text)
+        except:
+            ss49.append("NA")
+            ed49.append("NA")
+            md49.append("NA")
+        try:
+            ss50.append(links_season_4[12].text)
+            ed50.append(links_d_4[8].text)
+            md50.append(links_d_4[9].text)
+        except:
+            ss50.append("NA")
+            ed50.append("NA")
+            md50.append("NA")
+        try:
+            ss51.append(links_season_4[15].text)
+            ed51.append(links_d_4[10].text)
+            md51.append(links_d_4[11].text)
+        except:
+            ss51.append("NA")
+            ed51.append("NA")
+            md51.append("NA")
+        try:
+            ss52.append(links_season_4[18].text)
+            ed52.append(links_d_4[12].text)
+            md52.append(links_d_4[13].text)
+        except:
+            ss52.append("NA")
+            ed52.append("NA")
+            md52.append("NA")
+        try:
+            ss53.append(links_season_4[21].text)
+            ed53.append(links_d_4[14].text)
+            md53.append(links_d_4[15].text)
+        except:
+            ss53.append("NA")
+            ed53.append("NA")
+            md53.append("NA")
+        try:
+            ss54.append(links_season_4[24].text)
+            ed54.append(links_d_4[16].text)
+            md54.append(links_d_4[17].text)
+        except:
+            ss54.append("NA")
+            ed54.append("NA")
+            md54.append("NA")
+        try:
+            ss55.append(links_season_4[27].text)
+            ed55.append(links_d_4[18].text)
+            md55.append(links_d_4[19].text)
+        except:
+            ss55.append("NA")
+            ed55.append("NA")
+            md55.append("NA")
+        try:
+            ss56.append(links_season_4[30].text)
+            ed56.append(links_d_4[20].text)
+            md56.append(links_d_4[21].text)
+        except:
+            ss56.append("NA")
+            ed56.append("NA")
+            md56.append("NA")
+        try:
+            ss57.append(links_season_4[33].text)
+            ed57.append(links_d_4[22].text)
+            md57.append(links_d_4[23].text)
+        except:
+            ss57.append("NA")
+            ed57.append("NA")
+            md57.append("NA")
+        try:
+            ss58.append(links_season_4[36].text)
+            ed58.append(links_d_4[24].text)
+            md58.append(links_d_4[25].text)
+        except:
+            ss58.append("NA")
+            ed58.append("NA")
+            md58.append("NA")
+        try:
+            ss59.append(links_season_4[39].text)
+            ed59.append(links_d_4[26].text)
+            md59.append(links_d_4[27].text)
+        except:
+            ss59.append("NA")
+            ed59.append("NA")
+            md59.append("NA")
+        try:
+            ss60.append(links_season_4[42].text)
+            ed60.append(links_d_4[28].text)
+            md60.append(links_d_4[29].text)
+        except:
+            ss60.append("NA")
+            ed60.append("NA")
+            md60.append("NA")
+        ss61.append("NA")
+        ss62.append("NA")
+        ss63.append("NA")
+        ss64.append("NA")
+        ss65.append("NA")
+        ss66.append("NA")
+        ss67.append("NA")
+        ss68.append("NA")
+        ss69.append("NA")
+        ss70.append("NA")
+        ss71.append("NA")
+        ss72.append("NA")
+        ss73.append("NA")
+        ss74.append("NA")
+        ss75.append("NA")
+        ed61.append("NA")
+        ed62.append("NA")
+        ed63.append("NA")
+        ed64.append("NA")
+        ed65.append("NA")
+        ed66.append("NA")
+        ed67.append("NA")
+        ed68.append("NA")
+        ed69.append("NA")
+        ed70.append("NA")
+        ed71.append("NA")
+        ed72.append("NA")
+        ed73.append("NA")
+        ed74.append("NA")
+        ed75.append("NA")
+        md61.append("NA")
+        md62.append("NA")
+        md63.append("NA")
+        md64.append("NA")
+        md65.append("NA")
+        md66.append("NA")
+        md67.append("NA")
+        md68.append("NA")
+        md69.append("NA")
+        md70.append("NA")
+        md71.append("NA")
+        md72.append("NA")
+        md73.append("NA")
+        md74.append("NA")
+        md75.append("NA")
+    elif len(links_pages) == 5:
+        try:
+            ss1.append(links_season_1[0].text)
+            ed1.append(links_d_1[0].text)
+            md1.append(links_d_1[1].text)
+        except:
+            ss1.append("NA")
+            ed1.append("NA")
+            md1.append("NA")
+        try:
+            ss2.append(links_season_1[3].text)
+            ed2.append(links_d_1[2].text)
+            md2.append(links_d_1[3].text)
+        except:
+            ss2.append("NA")
+            ed2.append("NA")
+            md2.append("NA")
+        try:
+            ss3.append(links_season_1[6].text)
+            ed3.append(links_d_1[4].text)
+            md3.append(links_d_1[5].text)
+        except:
+            ss3.append("NA")
+            ed3.append("NA")
+            md3.append("NA")
+        try:
+            ss4.append(links_season_1[9].text)
+            ed4.append(links_d_1[6].text)
+            md4.append(links_d_1[7].text)
+        except:
+            ss4.append("NA")
+            ed4.append("NA")
+            md4.append("NA")
+        try:
+            ss5.append(links_season_1[12].text)
+            ed5.append(links_d_1[8].text)
+            md5.append(links_d_1[9].text)
+        except:
+            ss5.append("NA")
+            ed5.append("NA")
+            md5.append("NA")
+        try:
+            ss6.append(links_season_1[15].text)
+            ed6.append(links_d_1[10].text)
+            md6.append(links_d_1[11].text)
+        except:
+            ss6.append("NA")
+            ed6.append("NA")
+            md6.append("NA")
+        try:
+            ss7.append(links_season_1[18].text)
+            ed7.append(links_d_1[12].text)
+            md7.append(links_d_1[13].text)
+        except:
+            ss7.append("NA")
+            ed7.append("NA")
+            md7.append("NA")
+        try:
+            ss8.append(links_season_1[21].text)
+            ed8.append(links_d_1[14].text)
+            md8.append(links_d_1[15].text)
+        except:
+            ss8.append("NA")
+            ed8.append("NA")
+            md8.append("NA")
+        try:
+            ss9.append(links_season_1[24].text)
+            ed9.append(links_d_1[16].text)
+            md9.append(links_d_1[17].text)
+        except:
+            ss9.append("NA")
+            ed9.append("NA")
+            md9.append("NA")
+        try:
+            ss10.append(links_season_1[27].text)
+            ed10.append(links_d_1[18].text)
+            md10.append(links_d_1[19].text)
+        except:
+            ss10.append("NA")
+            ed10.append("NA")
+            md10.append("NA")
+        try:
+            ss11.append(links_season_1[30].text)
+            ed11.append(links_d_1[20].text)
+            md11.append(links_d_1[21].text)
+        except:
+            ss11.append("NA")
+            ed11.append("NA")
+            md11.append("NA")
+        try:
+            ss12.append(links_season_1[33].text)
+            ed12.append(links_d_1[22].text)
+            md12.append(links_d_1[23].text)
+        except:
+            ss12.append("NA")
+            ed12.append("NA")
+            md12.append("NA")
+        try:
+            ss13.append(links_season_1[36].text)
+            ed13.append(links_d_1[24].text)
+            md13.append(links_d_1[25].text)
+        except:
+            ss13.append("NA")
+            ed13.append("NA")
+            md13.append("NA")
+        try:
+            ss14.append(links_season_1[39].text)
+            ed14.append(links_d_1[26].text)
+            md14.append(links_d_1[27].text)
+        except:
+            ss14.append("NA")
+            ed14.append("NA")
+            md14.append("NA")
+        try:
+            ss15.append(links_season_1[42].text)
+            ed15.append(links_d_1[28].text)
+            md15.append(links_d_1[29].text)
+        except:
+            ss15.append("NA")
+            ed15.append("NA")
+            md15.append("NA")
+        page = player_inj_history_2[i]
+        tree = requests.get(page, headers = headers)
+        soup = BeautifulSoup(tree.content, 'html.parser')
+        links_season_2 = soup.find_all("td", {"class":"zentriert"})
+        links_d_2 = soup.find_all("td", {"class":"rechts"})
+        try:
+            ss16.append(links_season_2[0].text)
+            ed16.append(links_d_2[0].text)
+            md16.append(links_d_2[1].text)
+        except:
+            ss16.append("NA")
+            ed16.append("NA")
+            md16.append("NA")
+        try:
+            ss17.append(links_season_2[3].text)
+            ed17.append(links_d_2[2].text)
+            md17.append(links_d_2[3].text)
+        except:
+            ss17.append("NA")
+            ed17.append("NA")
+            md17.append("NA")
+        try:
+            ss18.append(links_season_2[6].text)
+            ed18.append(links_d_2[4].text)
+            md18.append(links_d_2[5].text)
+        except:
+            ss18.append("NA")
+            ed18.append("NA")
+            md18.append("NA")
+        try:
+            ss19.append(links_season_2[9].text)
+            ed19.append(links_d_2[6].text)
+            md19.append(links_d_2[7].text)
+        except:
+            ss19.append("NA")
+            ed19.append("NA")
+            md19.append("NA")
+        try:
+            ss20.append(links_season_2[12].text)
+            ed20.append(links_d_2[8].text)
+            md20.append(links_d_2[9].text)
+        except:
+            ss20.append("NA")
+            ed20.append("NA")
+            md20.append("NA")
+        try:
+            ss21.append(links_season_2[15].text)
+            ed21.append(links_d_2[10].text)
+            md21.append(links_d_2[11].text)
+        except:
+            ss21.append("NA")
+            ed21.append("NA")
+            md21.append("NA")
+        try:
+            ss22.append(links_season_2[18].text)
+            ed22.append(links_d_2[12].text)
+            md22.append(links_d_2[13].text)
+        except:
+            ss22.append("NA")
+            ed22.append("NA")
+            md22.append("NA")
+        try:
+            ss23.append(links_season_2[21].text)
+            ed23.append(links_d_2[14].text)
+            md23.append(links_d_2[15].text)
+        except:
+            ss23.append("NA")
+            ed23.append("NA")
+            md23.append("NA")
+        try:
+            ss24.append(links_season_2[24].text)
+            ed24.append(links_d_2[16].text)
+            md24.append(links_d_2[17].text)
+        except:
+            ss24.append("NA")
+            ed24.append("NA")
+            md24.append("NA")
+        try:
+            ss25.append(links_season_2[27].text)
+            ed25.append(links_d_2[18].text)
+            md25.append(links_d_2[19].text)
+        except:
+            ss25.append("NA")
+            ed25.append("NA")
+            md25.append("NA")
+        try:
+            ss26.append(links_season_2[30].text)
+            ed26.append(links_d_2[20].text)
+            md26.append(links_d_2[21].text)
+        except:
+            ss26.append("NA")
+            ed26.append("NA")
+            md26.append("NA")
+        try:
+            ss27.append(links_season_2[33].text)
+            ed27.append(links_d_2[22].text)
+            md27.append(links_d_2[23].text)
+        except:
+            ss27.append("NA")
+            ed27.append("NA")
+            md27.append("NA")
+        try:
+            ss28.append(links_season_2[36].text)
+            ed28.append(links_d_2[24].text)
+            md28.append(links_d_2[25].text)
+        except:
+            ss28.append("NA")
+            ed28.append("NA")
+            md28.append("NA")
+        try:
+            ss29.append(links_season_2[39].text)
+            ed29.append(links_d_2[26].text)
+            md29.append(links_d_2[27].text)
+        except:
+            ss29.append("NA")
+            ed29.append("NA")
+            md29.append("NA")
+        try:
+            ss30.append(links_season_2[42].text)
+            ed30.append(links_d_2[28].text)
+            md30.append(links_d_2[29].text)
+        except:
+            ss30.append("NA")
+            ed30.append("NA")
+            md30.append("NA")
+        page = player_inj_history_3[i]
+        tree = requests.get(page, headers = headers)
+        soup = BeautifulSoup(tree.content, 'html.parser')
+        links_season_3 = soup.find_all("td", {"class":"zentriert"})
+        links_d_3 = soup.find_all("td", {"class":"rechts"})
+        try:
+            ss31.append(links_season_3[0].text)
+            ed31.append(links_d_3[0].text)
+            md31.append(links_d_3[1].text)
+        except:
+            ss31.append("NA")
+            ed31.append("NA")
+            md31.append("NA")
+        try:
+            ss32.append(links_season_3[3].text)
+            ed32.append(links_d_3[2].text)
+            md32.append(links_d_3[3].text)
+        except:
+            ss32.append("NA")
+            ed32.append("NA")
+            md32.append("NA")
+        try:
+            ss33.append(links_season_3[6].text)
+            ed33.append(links_d_3[4].text)
+            md33.append(links_d_3[5].text)
+        except:
+            ss33.append("NA")
+            ed33.append("NA")
+            md33.append("NA")
+        try:
+            ss34.append(links_season_3[9].text)
+            ed34.append(links_d_3[6].text)
+            md34.append(links_d_3[7].text)
+        except:
+            ss34.append("NA")
+            ed34.append("NA")
+            md34.append("NA")
+        try:
+            ss35.append(links_season_3[12].text)
+            ed35.append(links_d_3[8].text)
+            md35.append(links_d_3[9].text)
+        except:
+            ss35.append("NA")
+            ed35.append("NA")
+            md35.append("NA")
+        try:
+            ss36.append(links_season_3[15].text)
+            ed36.append(links_d_3[10].text)
+            md36.append(links_d_3[11].text)
+        except:
+            ss36.append("NA")
+            ed36.append("NA")
+            md36.append("NA")
+        try:
+            ss37.append(links_season_3[18].text)
+            ed37.append(links_d_3[12].text)
+            md37.append(links_d_3[13].text)
+        except:
+            ss37.append("NA")
+            ed37.append("NA")
+            md37.append("NA")
+        try:
+            ss38.append(links_season_3[21].text)
+            ed38.append(links_d_3[14].text)
+            md38.append(links_d_3[15].text)
+        except:
+            ss38.append("NA")
+            ed38.append("NA")
+            md38.append("NA")
+        try:
+            ss39.append(links_season_3[24].text)
+            ed39.append(links_d_3[16].text)
+            md39.append(links_d_3[17].text)
+        except:
+            ss39.append("NA")
+            ed39.append("NA")
+            md39.append("NA")
+        try:
+            ss40.append(links_season_3[27].text)
+            ed40.append(links_d_3[18].text)
+            md40.append(links_d_3[19].text)
+        except:
+            ss40.append("NA")
+            ed40.append("NA")
+            md40.append("NA")
+        try:
+            ss41.append(links_season_3[30].text)
+            ed41.append(links_d_3[20].text)
+            md41.append(links_d_3[21].text)
+        except:
+            ss41.append("NA")
+            ed41.append("NA")
+            md41.append("NA")
+        try:
+            ss42.append(links_season_3[33].text)
+            ed42.append(links_d_3[22].text)
+            md42.append(links_d_3[23].text)
+        except:
+            ss42.append("NA")
+            ed42.append("NA")
+            md42.append("NA")
+        try:
+            ss43.append(links_season_3[36].text)
+            ed43.append(links_d_3[24].text)
+            md43.append(links_d_3[25].text)
+        except:
+            ss43.append("NA")
+            ed43.append("NA")
+            md43.append("NA")
+        try:
+            ss44.append(links_season_3[39].text)
+            ed44.append(links_d_3[26].text)
+            md44.append(links_d_3[27].text)
+        except:
+            ss44.append("NA")
+            ed44.append("NA")
+            md44.append("NA")
+        try:
+            ss45.append(links_season_3[42].text)
+            ed45.append(links_d_3[28].text)
+            md45.append(links_d_3[29].text)
+        except:
+            ss45.append("NA")
+            ed45.append("NA")
+            md45.append("NA")
+        page = player_inj_history_4[i]
+        tree = requests.get(page, headers = headers)
+        soup = BeautifulSoup(tree.content, 'html.parser')
+        links_season_4 = soup.find_all("td", {"class":"zentriert"})
+        links_d_4 = soup.find_all("td", {"class":"rechts"})
+        try:
+            ss46.append(links_season_4[0].text)
+            ed46.append(links_d_4[0].text)
+            md46.append(links_d_4[1].text)
+        except:
+            ss46.append("NA")
+            ed46.append("NA")
+            md46.append("NA")
+        try:
+            ss47.append(links_season_4[3].text)
+            ed47.append(links_d_4[2].text)
+            md47.append(links_d_4[3].text)
+        except:
+            ss47.append("NA")
+            ed47.append("NA")
+            md47.append("NA")
+        try:
+            ss48.append(links_season_4[6].text)
+            ed48.append(links_d_4[4].text)
+            md48.append(links_d_4[5].text)
+        except:
+            ss48.append("NA")
+            ed48.append("NA")
+            md48.append("NA")
+        try:
+            ss49.append(links_season_4[9].text)
+            ed49.append(links_d_4[6].text)
+            md49.append(links_d_4[7].text)
+        except:
+            ss49.append("NA")
+            ed49.append("NA")
+            md49.append("NA")
+        try:
+            ss50.append(links_season_4[12].text)
+            ed50.append(links_d_4[8].text)
+            md50.append(links_d_4[9].text)
+        except:
+            ss50.append("NA")
+            ed50.append("NA")
+            md50.append("NA")
+        try:
+            ss51.append(links_season_4[15].text)
+            ed51.append(links_d_4[10].text)
+            md51.append(links_d_4[11].text)
+        except:
+            ss51.append("NA")
+            ed51.append("NA")
+            md51.append("NA")
+        try:
+            ss52.append(links_season_4[18].text)
+            ed52.append(links_d_4[12].text)
+            md52.append(links_d_4[13].text)
+        except:
+            ss52.append("NA")
+            ed52.append("NA")
+            md52.append("NA")
+        try:
+            ss53.append(links_season_4[21].text)
+            ed53.append(links_d_4[14].text)
+            md53.append(links_d_4[15].text)
+        except:
+            ss53.append("NA")
+            ed53.append("NA")
+            md53.append("NA")
+        try:
+            ss54.append(links_season_4[24].text)
+            ed54.append(links_d_4[16].text)
+            md54.append(links_d_4[17].text)
+        except:
+            ss54.append("NA")
+            ed54.append("NA")
+            md54.append("NA")
+        try:
+            ss55.append(links_season_4[27].text)
+            ed55.append(links_d_4[18].text)
+            md55.append(links_d_4[19].text)
+        except:
+            ss55.append("NA")
+            ed55.append("NA")
+            md55.append("NA")
+        try:
+            ss56.append(links_season_4[30].text)
+            ed56.append(links_d_4[20].text)
+            md56.append(links_d_4[21].text)
+        except:
+            ss56.append("NA")
+            ed56.append("NA")
+            md56.append("NA")
+        try:
+            ss57.append(links_season_4[33].text)
+            ed57.append(links_d_4[22].text)
+            md57.append(links_d_4[23].text)
+        except:
+            ss57.append("NA")
+            ed57.append("NA")
+            md57.append("NA")
+        try:
+            ss58.append(links_season_4[36].text)
+            ed58.append(links_d_4[24].text)
+            md58.append(links_d_4[25].text)
+        except:
+            ss58.append("NA")
+            ed58.append("NA")
+            md58.append("NA")
+        try:
+            ss59.append(links_season_4[39].text)
+            ed59.append(links_d_4[26].text)
+            md59.append(links_d_4[27].text)
+        except:
+            ss59.append("NA")
+            ed59.append("NA")
+            md59.append("NA")
+        try:
+            ss60.append(links_season_4[42].text)
+            ed60.append(links_d_4[28].text)
+            md60.append(links_d_4[29].text)
+        except:
+            ss60.append("NA")
+            ed60.append("NA")
+            md60.append("NA")
+        page = player_inj_history_5[i]
+        tree = requests.get(page, headers = headers)
+        soup = BeautifulSoup(tree.content, 'html.parser')
+        links_season_5 = soup.find_all("td", {"class":"zentriert"})
+        links_d_5 = soup.find_all("td", {"class":"rechts"})
+        try:
+            ss61.append(links_season_5[0].text)
+            ed61.append(links_d_5[0].text)
+            md61.append(links_d_5[1].text)
+        except:
+            ss61.append("NA")
+            ed61.append("NA")
+            md61.append("NA")
+        try:
+            ss62.append(links_season_5[3].text)
+            ed62.append(links_d_5[2].text)
+            md62.append(links_d_5[3].text)
+        except:
+            ss62.append("NA")
+            ed62.append("NA")
+            md62.append("NA")
+        try:
+            ss63.append(links_season_5[6].text)
+            ed63.append(links_d_5[4].text)
+            md63.append(links_d_5[5].text)
+        except:
+            ss63.append("NA")
+            ed63.append("NA")
+            md63.append("NA")
+        try:
+            ss64.append(links_season_5[9].text)
+            ed64.append(links_d_5[6].text)
+            md64.append(links_d_5[7].text)
+        except:
+            ss64.append("NA")
+            ed64.append("NA")
+            md64.append("NA")
+        try:
+            ss65.append(links_season_5[12].text)
+            ed65.append(links_d_5[8].text)
+            md65.append(links_d_5[9].text)
+        except:
+            ss65.append("NA")
+            ed65.append("NA")
+            md65.append("NA")
+        try:
+            ss66.append(links_season_5[15].text)
+            ed66.append(links_d_5[10].text)
+            md66.append(links_d_5[11].text)
+        except:
+            ss66.append("NA")
+            ed66.append("NA")
+            md66.append("NA")
+        try:
+            ss67.append(links_season_5[18].text)
+            ed67.append(links_d_5[12].text)
+            md67.append(links_d_5[13].text)
+        except:
+            ss67.append("NA")
+            ed67.append("NA")
+            md67.append("NA")
+        try:
+            ss68.append(links_season_5[21].text)
+            ed68.append(links_d_5[14].text)
+            md68.append(links_d_5[15].text)
+        except:
+            ss68.append("NA")
+            ed68.append("NA")
+            md68.append("NA")
+        try:
+            ss69.append(links_season_5[24].text)
+            ed69.append(links_d_5[16].text)
+            md69.append(links_d_5[17].text)
+        except:
+            ss69.append("NA")
+            ed69.append("NA")
+            md69.append("NA")
+        try:
+            ss70.append(links_season_5[27].text)
+            ed70.append(links_d_5[18].text)
+            md70.append(links_d_5[19].text)
+        except:
+            ss70.append("NA")
+            ed70.append("NA")
+            md70.append("NA")
+        try:
+            ss71.append(links_season_5[30].text)
+            ed71.append(links_d_5[20].text)
+            md71.append(links_d_5[21].text)
+        except:
+            ss71.append("NA")
+            ed71.append("NA")
+            md71.append("NA")
+        try:
+            ss72.append(links_season_5[33].text)
+            ed72.append(links_d_5[22].text)
+            md72.append(links_d_5[23].text)
+        except:
+            ss72.append("NA")
+            ed72.append("NA")
+            md72.append("NA")
+        try:
+            ss73.append(links_season_5[36].text)
+            ed73.append(links_d_5[24].text)
+            md73.append(links_d_5[25].text)
+        except:
+            ss73.append("NA")
+            ed73.append("NA")
+            md73.append("NA")
+        try:
+            ss74.append(links_season_5[39].text)
+            ed74.append(links_d_5[26].text)
+            md74.append(links_d_5[27].text)
+        except:
+            ss74.append("NA")
+            ed74.append("NA")
+            md74.append("NA")
+        try:
+            ss75.append(links_season_5[42].text)
+            ed75.append(links_d_5[28].text)
+            md75.append(links_d_5[29].text)
+        except:
+            ss75.append("NA")
+            ed75.append("NA")
+            md75.append("NA")
+    elif len(links_pages) == 0:
+        try:
+            ss1.append(links_season_1[0].text)
+            ed1.append(links_d_1[0].text)
+            md1.append(links_d_1[1].text)
+        except:
+            ss1.append("NA")
+            ed1.append("NA")
+            md1.append("NA")
+        try:
+            ss2.append(links_season_1[3].text)
+            ed2.append(links_d_1[2].text)
+            md2.append(links_d_1[3].text)
+        except:
+            ss2.append("NA")
+            ed2.append("NA")
+            md2.append("NA")
+        try:
+            ss3.append(links_season_1[6].text)
+            ed3.append(links_d_1[4].text)
+            md3.append(links_d_1[5].text)
+        except:
+            ss3.append("NA")
+            ed3.append("NA")
+            md3.append("NA")
+        try:
+            ss4.append(links_season_1[9].text)
+            ed4.append(links_d_1[6].text)
+            md4.append(links_d_1[7].text)
+        except:
+            ss4.append("NA")
+            ed4.append("NA")
+            md4.append("NA")
+        try:
+            ss5.append(links_season_1[12].text)
+            ed5.append(links_d_1[8].text)
+            md5.append(links_d_1[9].text)
+        except:
+            ss5.append("NA")
+            ed5.append("NA")
+            md5.append("NA")
+        try:
+            ss6.append(links_season_1[15].text)
+            ed6.append(links_d_1[10].text)
+            md6.append(links_d_1[11].text)
+        except:
+            ss6.append("NA")
+            ed6.append("NA")
+            md6.append("NA")
+        try:
+            ss7.append(links_season_1[18].text)
+            ed7.append(links_d_1[12].text)
+            md7.append(links_d_1[13].text)
+        except:
+            ss7.append("NA")
+            ed7.append("NA")
+            md7.append("NA")
+        try:
+            ss8.append(links_season_1[21].text)
+            ed8.append(links_d_1[14].text)
+            md8.append(links_d_1[15].text)
+        except:
+            ss8.append("NA")
+            ed8.append("NA")
+            md8.append("NA")
+        try:
+            ss9.append(links_season_1[24].text)
+            ed9.append(links_d_1[16].text)
+            md9.append(links_d_1[17].text)
+        except:
+            ss9.append("NA")
+            ed9.append("NA")
+            md9.append("NA")
+        try:
+            ss10.append(links_season_1[27].text)
+            ed10.append(links_d_1[18].text)
+            md10.append(links_d_1[19].text)
+        except:
+            ss10.append("NA")
+            ed10.append("NA")
+            md10.append("NA")
+        try:
+            ss11.append(links_season_1[30].text)
+            ed11.append(links_d_1[20].text)
+            md11.append(links_d_1[21].text)
+        except:
+            ss11.append("NA")
+            ed11.append("NA")
+            md11.append("NA")
+        try:
+            ss12.append(links_season_1[33].text)
+            ed12.append(links_d_1[22].text)
+            md12.append(links_d_1[23].text)
+        except:
+            ss12.append("NA")
+            ed12.append("NA")
+            md12.append("NA")
+        try:
+            ss13.append(links_season_1[36].text)
+            ed13.append(links_d_1[24].text)
+            md13.append(links_d_1[25].text)
+        except:
+            ss13.append("NA")
+            ed13.append("NA")
+            md13.append("NA")
+        try:
+            ss14.append(links_season_1[39].text)
+            ed14.append(links_d_1[26].text)
+            md14.append(links_d_1[27].text)
+        except:
+            ss14.append("NA")
+            ed14.append("NA")
+            md14.append("NA")
+        try:
+            ss15.append(links_season_1[42].text)
+            ed15.append(links_d_1[28].text)
+            md15.append(links_d_1[29].text)
+        except:
+            ss15.append("NA")
+            ed15.append("NA")
+            md15.append("NA")
+        ss16.append("NA")
+        ss17.append("NA")
+        ss18.append("NA")
+        ss19.append("NA")
+        ss20.append("NA")
+        ss21.append("NA")
+        ss22.append("NA")
+        ss23.append("NA")
+        ss24.append("NA")
+        ss25.append("NA")
+        ss26.append("NA")
+        ss27.append("NA")
+        ss28.append("NA")
+        ss29.append("NA")
+        ss30.append("NA")
+        ss31.append("NA")
+        ss32.append("NA")
+        ss33.append("NA")
+        ss34.append("NA")
+        ss35.append("NA")
+        ss36.append("NA")
+        ss37.append("NA")
+        ss38.append("NA")
+        ss39.append("NA")
+        ss40.append("NA")
+        ss41.append("NA")
+        ss42.append("NA")
+        ss43.append("NA")
+        ss44.append("NA")
+        ss45.append("NA")
+        ss46.append("NA")
+        ss47.append("NA")
+        ss48.append("NA")
+        ss49.append("NA")
+        ss50.append("NA")
+        ss51.append("NA")
+        ss52.append("NA")
+        ss53.append("NA")
+        ss54.append("NA")
+        ss55.append("NA")
+        ss56.append("NA")
+        ss57.append("NA")
+        ss58.append("NA")
+        ss59.append("NA")
+        ss60.append("NA")
+        ss61.append("NA")
+        ss62.append("NA")
+        ss63.append("NA")
+        ss64.append("NA")
+        ss65.append("NA")
+        ss66.append("NA")
+        ss67.append("NA")
+        ss68.append("NA")
+        ss69.append("NA")
+        ss70.append("NA")
+        ss71.append("NA")
+        ss72.append("NA")
+        ss73.append("NA")
+        ss74.append("NA")
+        ss75.append("NA")
+        ed16.append("NA")
+        ed17.append("NA")
+        ed18.append("NA")
+        ed19.append("NA")
+        ed20.append("NA")
+        ed21.append("NA")
+        ed22.append("NA")
+        ed23.append("NA")
+        ed24.append("NA")
+        ed25.append("NA")
+        ed26.append("NA")
+        ed27.append("NA")
+        ed28.append("NA")
+        ed29.append("NA")
+        ed30.append("NA")
+        ed31.append("NA")
+        ed32.append("NA")
+        ed33.append("NA")
+        ed34.append("NA")
+        ed35.append("NA")
+        ed36.append("NA")
+        ed37.append("NA")
+        ed38.append("NA")
+        ed39.append("NA")
+        ed40.append("NA")
+        ed41.append("NA")
+        ed42.append("NA")
+        ed43.append("NA")
+        ed44.append("NA")
+        ed45.append("NA")
+        ed46.append("NA")
+        ed47.append("NA")
+        ed48.append("NA")
+        ed49.append("NA")
+        ed50.append("NA")
+        ed51.append("NA")
+        ed52.append("NA")
+        ed53.append("NA")
+        ed54.append("NA")
+        ed55.append("NA")
+        ed56.append("NA")
+        ed57.append("NA")
+        ed58.append("NA")
+        ed59.append("NA")
+        ed60.append("NA")
+        ed61.append("NA")
+        ed62.append("NA")
+        ed63.append("NA")
+        ed64.append("NA")
+        ed65.append("NA")
+        ed66.append("NA")
+        ed67.append("NA")
+        ed68.append("NA")
+        ed69.append("NA")
+        ed70.append("NA")
+        ed71.append("NA")
+        ed72.append("NA")
+        ed73.append("NA")
+        ed74.append("NA")
+        ed75.append("NA")
+        md16.append("NA")
+        md17.append("NA")
+        md18.append("NA")
+        md19.append("NA")
+        md20.append("NA")
+        md21.append("NA")
+        md22.append("NA")
+        md23.append("NA")
+        md24.append("NA")
+        md25.append("NA")
+        md26.append("NA")
+        md27.append("NA")
+        md28.append("NA")
+        md29.append("NA")
+        md30.append("NA")
+        md31.append("NA")
+        md32.append("NA")
+        md33.append("NA")
+        md34.append("NA")
+        md35.append("NA")
+        md36.append("NA")
+        md37.append("NA")
+        md38.append("NA")
+        md39.append("NA")
+        md40.append("NA")
+        md41.append("NA")
+        md42.append("NA")
+        md43.append("NA")
+        md44.append("NA")
+        md45.append("NA")
+        md46.append("NA")
+        md47.append("NA")
+        md48.append("NA")
+        md49.append("NA")
+        md50.append("NA")
+        md51.append("NA")
+        md52.append("NA")
+        md53.append("NA")
+        md54.append("NA")
+        md55.append("NA")
+        md56.append("NA")
+        md57.append("NA")
+        md58.append("NA")
+        md59.append("NA")
+        md60.append("NA")
+        md61.append("NA")
+        md62.append("NA")
+        md63.append("NA")
+        md64.append("NA")
+        md65.append("NA")
+        md66.append("NA")
+        md67.append("NA")
+        md68.append("NA")
+        md69.append("NA")
+        md70.append("NA")
+        md71.append("NA")
+        md72.append("NA")
+        md73.append("NA")
+        md74.append("NA")
+        md75.append("NA")
+
+
+
+df = pd.DataFrame({"Players":clean_name,"ss1":ss1,"ed1":ed1,"md1":md1,"ss2":ss2,"ed2":ed2,"md2":md2,"ss3":ss3,"ed3":ed3,"md3":md3,"ss4":ss4,"ed4":ed4,"md4":md4,"ss5":ss5,"ed5":ed5,"md5":md5,"ss6":ss6,"ed6":ed6,"md6":md6,"ss7":ss7,"ed7":ed7,"md7":md7,"ss8":ss8,"ed8":ed8,"md8":md8,"ss9":ss9,"ed9":ed9,"md9":md9,"ss10":ss10,"ed10":ed10,"md10":md10,"ss11":ss11,"ed11":ed11,"md11":md11,"ss12":ss12,"ed12":ed12,"md12":md12,"ss13":ss13,"ed13":ed13,"md13":md13,"ss14":ss14,"ed14":ed14,"md14":md14,"ss15":ss15,"ed15":ed15,"md15":md15,"ss16":ss16,"ed16":ed16,"md16":md16,"ss17":ss17,"ed17":ed17,"md17":md17,"ss18":ss18,"ed18":ed18,"md18":md18,"ss19":ss19,"ed19":ed19,"md19":md19,"ss20":ss20,"ed20":ed20,"md20":md20,"ss21":ss21,"ed21":ed21,"md21":md21,"ss22":ss22,"ed22":ed22,"md22":md22,"ss23":ss23,"ed23":ed23,"md23":md23,"ss24":ss24,"ed24":ed24,"md24":md24,"ss25":ss25,"ed25":ed25,"md25":md25,"ss26":ss26,"ed26":ed26,"md26":md26,"ss27":ss27,"ed27":ed27,"md27":md27,"ss28":ss28,"ed28":ed28,"md28":md28,"ss29":ss29,"ed29":ed29,"md29":md29,"ss30":ss30,"ed30":ed30,"md30":md30,"ss31":ss31,"ed31":ed31,"md31":md31,"ss32":ss32,"ed32":ed32,"md32":md32,"ss33":ss33,"ed33":ed33,"md33":md33,"ss34":ss34,"ed34":ed34,"md34":md34,"ss35":ss35,"ed35":ed35,"md35":md35,"ss36":ss36,"ed36":ed36,"md36":md36,"ss37":ss37,"ed37":ed37,"md37":md37,"ss38":ss38,"ed38":ed38,"md38":md38,"ss39":ss39,"ed39":ed39,"md39":md39,"ss40":ss40,"ed40":ed40,"md40":md40,"ss41":ss41,"ed41":ed41,"md41":md41,"ss42":ss42,"ed42":ed42,"md42":md42,"ss43":ss43,"ed43":ed43,"md43":md43,"ss44":ss44,"ed44":ed44,"md44":md44,"ss45":ss45,"ed45":ed45,"md45":md45,"ss46":ss46,"ed46":ed46,"md46":md46,"ss47":ss47,"ed47":ed47,"md47":md47,"ss48":ss48,"ed48":ed48,"md48":md48,"ss49":ss49,"ed49":ed49,"md49":md49,"ss50":ss50,"ed50":ed50,"md50":md50,"ss51":ss51,"ed51":ed51,"md51":md51,"ss52":ss52,"ed52":ed52,"md52":md52,"ss53":ss53,"ed53":ed53,"md53":md53,"ss54":ss54,"ed54":ed54,"md54":md54,"ss55":ss55,"ed55":ed55,"md55":md55,"ss56":ss56,"ed56":ed56,"md56":md56,"ss57":ss57,"ed57":ed57,"md57":md57,"ss58":ss58,"ed58":ed58,"md58":md58,"ss59":ss59,"ed59":ed59,"md59":md59,"ss60":ss60,"ed60":ed60,"md60":md60,"ss61":ss61,"ed61":ed61,"md61":md61,"ss62":ss62,"ed62":ed62,"md62":md62,"ss63":ss63,"ed63":ed63,"md63":md63,"ss64":ss64,"ed64":ed64,"md64":md64,"ss65":ss65,"ed65":ed65,"md65":md65,"ss66":ss66,"ed66":ed66,"md66":md66,"ss67":ss67,"ed67":ed67,"md67":md67,"ss68":ss68,"ed68":ed68,"md68":md68,"ss69":ss69,"ed69":ed69,"md69":md69,"ss70":ss70,"ed70":ed70,"md70":md70,"ss71":ss71,"ed71":ed71,"md71":md71,"ss72":ss72,"ed72":ed72,"md72":md72,"ss73":ss73,"ed73":ed73,"md73":md73,"ss74":ss74,"ed74":ed74,"md74":md74,"ss75":ss75,"ed75":ed75,"md75":md75})
+
+df.to_excel('ITA_injury(ext)_history_18-19.xlsx')
